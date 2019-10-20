@@ -1,12 +1,14 @@
 {
-    "savePath":"./video",
-    "apis":[
-        {
-            "api":"https://jx.618g.com/?url=",
-            "reg":"(?<=url=)(http.*)(?=.m3u8)"
-        },{
-             "api":"https://607p.com/?url=",
-            "reg":"(?<=url=)(http.*)(?=.m3u8)"
-        }
-    ]
+  "version": "v1.0",
+  "savePath": "./video",
+  "apis": [ 
+    {
+      "api": "https://607p.com/?url=",
+      "reg": "(?<=url=)(http.*)(?=.m3u8)"
+    },
+   {
+      "api": "https://jx.618g.com/?url=",
+      "reg": "(?<=url=)(http.*)(?=.m3u8)"
+    }
+  ]
 }

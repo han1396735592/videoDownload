@@ -1,34 +1,74 @@
+import os
+
+from subprocess import call,Popen
+
 import requests
 import re
 import time
 import m3u8
 import json
+debug = True
+version = '1'
+
+
+def update(ver):
+    fileName = 'vipVideoDownloader-'+ver+'.exe'
+    url = 'https://gitee.com/han1396735592/videoDownload/raw/master/dist/vipVideoDownloader.exe'
+    url='https://github.com/han1396735592/videoDownload/releases/download/'+ver+'/vipVideoDownloader.exe'
+    print('update')
+    r = requests.get(url)
+    with open(fileName, "wb") as code:
+        code.write(r.content)
+    code.close()
+    os.system('start '+fileName)
+    exit(0)
+
+def checkUpdate(ver):
+    fileName = 'vipVideoDownloader-'+ver+'.exe'
+    if os.path.exists(fileName):
+        print('as')
+    if ver != version:
+        update(ver)
+    else:
+        print('ok')
+
 
 def init():
+    jsonStr = ''
 
-    res = requests.get("https://gitee.com/han1396735592/videoDownload/raw/master/config.json")
-    config = json.loads(res.text)
-    # print("#"*50)
-    # print(res.text)
-    # print("#"*50)
+    if debug:
+        print('debug')
+        file = open('./config.json', 'r')
+        jsonStr = str(file.read())
+    else:
+        res = requests.get("https://gitee.com/han1396735592/videoDownload/raw/master/config.json")
+        jsonStr = res.text
+
+    print("#" * 50)
+    print(jsonStr)
+    print("#" * 50)
+    config = json.loads(jsonStr)
 
     global savePath
     savePath = config['savePath']
     global apis
     apis = config['apis']
-    
+    checkUpdate(config['version'])
+
+
 def getM3u8Url(video_url):
     url = ''
     for api in apis:
         res = requests.get(api['api'] + video_url)
         li = re.findall(api['reg'], res.text)
         # print(li)
-        if len(li)>0:
+        if len(li) > 0:
             temp = "%s.m3u8" % li[0]
         if temp:
             url = temp
             break
     return url
+
 
 def download(video_url):
     m3u8Url = getM3u8Url(video_url)
@@ -37,6 +77,7 @@ def download(video_url):
     print("save directory at  " + savePath)
     print("download video is  " + title)
     m3u8.main([m3u8Url], [savePath], [title])
+
 
 def getTitle(video_url):
     if str(video_url).endswith('.m3u8'):
