@@ -7,31 +7,9 @@ import re
 import time
 import m3u8
 import json
+import update
+
 debug = True
-version = '1'
-
-
-def update(ver):
-    fileName = 'vipVideoDownloader-'+ver+'.exe'
-    url = 'https://gitee.com/han1396735592/videoDownload/raw/master/dist/vipVideoDownloader.exe'
-    url='https://github.com/han1396735592/videoDownload/releases/download/'+ver+'/vipVideoDownloader.exe'
-    print('update')
-    r = requests.get(url)
-    with open(fileName, "wb") as code:
-        code.write(r.content)
-    code.close()
-    os.system('start '+fileName)
-    exit(0)
-
-def checkUpdate(ver):
-    fileName = 'vipVideoDownloader-'+ver+'.exe'
-    if os.path.exists(fileName):
-        print('as')
-    if ver != version:
-        update(ver)
-    else:
-        print('ok')
-
 
 def init():
     jsonStr = ''
@@ -53,8 +31,7 @@ def init():
     savePath = config['savePath']
     global apis
     apis = config['apis']
-    checkUpdate(config['version'])
-
+    update.checkUpdate(config['info'])
 
 def getM3u8Url(video_url):
     url = ''
@@ -81,7 +58,7 @@ def download(video_url):
 
 def getTitle(video_url):
     if str(video_url).endswith('.m3u8'):
-        return 'video-%s' % time.strftime('%Y-%m-%d %H:%M:%S')
+        return 'video-%s' % time.strftime('%Y-%m-%d%H:%M:%S')
     res = requests.get(video_url)
     title = re.findall(r"<title>(.+?)</title>", res.text)[0]
     return str(title).encode(res.encoding + "").decode("utf-8")
