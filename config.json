@@ -1,7 +1,7 @@
 {
-  "info":{
-	  "version": "v1.0",
-    "downloadAddress":"https://qqhxj.oss-cn-beijing.aliyuncs.com/vipVideoDownloader.exe"
+  "info": {
+    "version": "1.0",
+    "downloadAddress": "https://qqhxj.oss-cn-beijing.aliyuncs.com/vipVideoDownloader.exe"
   },
   "savePath": "./video",
   "apis": [
@@ -9,7 +9,7 @@
       "api": "https://607p.com/?url=",
       "reg": "(?<=url=)(http.*)(?=.m3u8)"
     },
-   {
+    {
       "api": "https://jx.618g.com/?url=",
       "reg": "(?<=url=)(http.*)(?=.m3u8)"
     }
