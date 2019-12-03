@@ -1,7 +1,7 @@
 ﻿# videoDownload
  一个一键下载vip视频的软件
 [下载地址](https://gitee.com/han1396735592/videoDownload/raw/master/dist/vipVideoDownloader.exe)
-
+[下载地址 推荐](https://qqhxj.oss-cn-beijing.aliyuncs.com/vipVideoDownloader.exe)
 ## 功能说明
 
 1. 下载vip视频
