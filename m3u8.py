@@ -224,16 +224,9 @@ def main(urllist, dirlist, videoNameList):
         global _count
         _count = 0
         _exitFlag = 0
-
         dir = str(dir)
-        tempDir = ""
-        if dir.endswith("/") | dir.endswith("|"):
-            tempDir=dir+"temp/"
-        else:
-            tempDir=dir+"/temp/"
-
+        tempDir = dir+"/temp"
         start(real_url, tempDir, videoName)
-        shutil.move(tempDir+videoName+".mp4",dir+videoName+".mp4")
-
+        shutil.move(tempDir+"/"+videoName+".mp4",dir+"/"+videoName+".mp4")
 
 session = get_session(50, 50, 3)

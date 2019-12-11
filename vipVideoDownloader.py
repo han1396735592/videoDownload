@@ -1,8 +1,7 @@
 import sys
-import requests
-import re
-import configparser
+
 import utils
+
 if __name__ == '__main__':
     utils.init()
     if len(sys.argv) > 1:

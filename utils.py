@@ -7,9 +7,8 @@ import re
 import time
 import m3u8
 import json
-import update
 
-debug = True
+debug = False
 
 def init():
     jsonStr = ''
@@ -22,16 +21,15 @@ def init():
         res = requests.get("https://gitee.com/han1396735592/videoDownload/raw/master/config.json")
         jsonStr = res.text
 
-    print("#" * 50)
-    print(jsonStr)
-    print("#" * 50)
+    # print("#" * 50)
+    # print(jsonStr)
+    # print("#" * 50)
     config = json.loads(jsonStr)
 
     global savePath
     savePath = config['savePath']
     global apis
     apis = config['apis']
-    update.checkUpdate(config['info'])
 
 def getM3u8Url(video_url):
     url = ''
