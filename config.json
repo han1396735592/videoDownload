@@ -9,9 +9,13 @@
       "api": "https://jx.618g.com/?url=",
       "reg": "(?<=url=)(http.*)(?=.m3u8)"
     },
-   {
+    {
       "api": "https://607p.com/?url=",
       "reg": "(?<=url=)(http.*)(?=.m3u8)"
     }
-  ]
+  ],
+  "jx": {
+    "list": "https://api.okzy.tv/api.php/provide/vod/at/json/?ac=list",
+    "detail": "https://api.okzy.tv/api.php/provide/vod/at/json/?ac=detail"
+  }
 }

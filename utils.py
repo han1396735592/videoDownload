@@ -8,24 +8,22 @@ import time
 import m3u8
 import json
 
-debug = False
-
-def init():
-    jsonStr = ''
-
+debug = True
+def getConfig():
     if debug:
-        print('debug')
         file = open('./config.json', 'r')
         jsonStr = str(file.read())
     else:
         res = requests.get("https://gitee.com/han1396735592/videoDownload/raw/master/config.json")
         jsonStr = res.text
+        # print("#" * 50)
+        # print(jsonStr)
+        # print("#" * 50)
+    return json.loads(jsonStr)
 
-    # print("#" * 50)
-    # print(jsonStr)
-    # print("#" * 50)
-    config = json.loads(jsonStr)
 
+def init():
+    config = getConfig()
     global savePath
     savePath = config['savePath']
     global apis
