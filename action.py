@@ -6,9 +6,9 @@ import m3u8
 
 
 def download(opt):
-    print("{:-<50}{:-^20}{:-<50}".format('-', 'download', '-'))
+    print("{:-<50}{:-^100}{:-<50}".format('-', 'download', '-'))
     print("参数: %s" % opt)
-    print("-" * 120)
+    print("-" * 200)
     if opt[1].startswith("http"):
         utils.download(opt[1])
     else:
@@ -30,7 +30,7 @@ def download(opt):
                     ss = s.split('$')
                     m3u8Map[ss[0]] = ss[1]
 
-            if len(m3u8Map.keys())==1:
+            if len(m3u8Map.keys()) == 1:
                 print(config['savePath'])
                 m3u8.main([m3u8Map.popitem()[1]], config['savePath'], detail['list'][0]['vod_name'])
             else:
@@ -50,17 +50,18 @@ def download(opt):
                 print(titleList)
                 for k in titleList:
                     # print(k)
-                    dirList.append(config['savePath']+detail['list'][0]['vod_name'])
+                    dirList.append(config['savePath'] + detail['list'][0]['vod_name'])
                     urlList.append(m3u8Map[k])
                 m3u8.main(urlList, dirList, titleList)
         except:
             print("参数有误")
 
+
 def search(opt):
-    print("{:-<50}{:-^20}{:-<50}".format('-', 'search', '-'))
+    print("{:-<50}{:-^100}{:-<50}".format('-', 'search', '-'))
     print("参数: %s" % opt)
     showList(getList(opt[1])['list'])
-    print("-" * 120)
+    print("-" * 200)
 
 
 def detail(opt):
@@ -68,7 +69,7 @@ def detail(opt):
     print("参数: %s" % opt)
     data = getDetail(opt[1])
     showVod(data['list'][0])
-    print("-" * 120)
+    print("-" * 200)
 
 
 def showVod(data):
@@ -93,13 +94,19 @@ def showVod(data):
         else:
             ss = s.split('$')
             onlineMap[ss[0]] = ss[1]
-    print("在线观看:%s" % onlineMap)
-    print("m3u8地址:%s" % m3u8Map)
-    print("mp4地址:%s" % mp4Map)
+    # print("在线观看:%s" % onlineMap)
+    # print("m3u8地址:%s" % m3u8Map)
+    # print("mp4地址:%s" % mp4Map)
+    for k in m3u8Map:
+        try:
+            url = onlineMap[k]
+        except:
+            url = 'Null'
+        print("{:<8}{:<96}{:<96}".format(k, m3u8Map[k],url))
 
 
 def showList(data):
-    print("{:<7}{:^30}{:^10}{:^12}".format("vod_id","vod_name",'type','time'))
+    print("{:<7}{:^30}{:^10}{:^12}".format("vod_id", "vod_name", 'type', 'time'))
     for row in data:
         print("{:<7}{:^30}{:^10}{:^12}".format(row['vod_id'], row['vod_name'], row['type_name'], row['vod_time']))
 

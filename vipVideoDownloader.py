@@ -2,11 +2,11 @@ import utils
 import action
 import keyMap
 def help():
-    print("{:-<50}{:-^20}{:-<50}".format('-','help','-'))
+    print("{:-<50}{:-^100}{:-<50}".format('-','help','-'))
     print("用法: 命令 + 参数")
     for key in keyMap.keyMap:
         print("{:<40} {:<30}".format(key['cmd'],key['description']))
-    print("-"*120)
+    print("-"*200)
     readCmd()
 
 def readCmd():
