@@ -25,11 +25,9 @@ def download(opt):
             else:
                 ls = str(plays).split("$$$")
             for s in ls:
-                print(s)
                 if (s.endswith(".m3u8")):
                     ss = s.split('$')
                     m3u8Map[ss[0]] = ss[1]
-
             if len(m3u8Map.keys()) == 1:
                 print(config['savePath'])
                 m3u8.main([m3u8Map.popitem()[1]], config['savePath'], detail['list'][0]['vod_name'])
@@ -50,7 +48,7 @@ def download(opt):
                 print(titleList)
                 for k in titleList:
                     # print(k)
-                    dirList.append(config['savePath'] + detail['list'][0]['vod_name'])
+                    dirList.append(config['savePath'] +"/"+ detail['list'][0]['vod_name'])
                     urlList.append(m3u8Map[k])
                 m3u8.main(urlList, dirList, titleList)
         except:
