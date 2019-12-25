@@ -8,7 +8,7 @@ import time
 import m3u8
 import json
 
-debug = True
+debug = False
 def getConfig():
     if debug:
         file = open('./config.json', 'r')

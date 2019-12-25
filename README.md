@@ -16,6 +16,7 @@
 ## 命令介绍
 
 >用法: 命令 + 参数
+>
 > d [ url | [ vod_id [opt] ]               下载视频                          
 > s [word]                                 搜索视频                          
 > detail [vod_id]                          详细视频       
