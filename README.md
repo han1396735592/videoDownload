@@ -24,7 +24,7 @@
         - 02-05 第二集到第五集
     ![download](img/download.png)    
 
-2. 详细信息 `detaid vod_id`
+2. 详细信息 `detail vod_id`
     - vod_id 视频ID
     ![info](img/info.png)
 
