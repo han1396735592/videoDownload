@@ -54,7 +54,7 @@ def download(video_url):
 
 def getTitle(video_url):
     if str(video_url).endswith('.m3u8'):
-        return 'video-%s' % time.strftime('%Y-%m-%d%H:%M:%S')
+        return 'video-%s' % time.strftime('%H-%M-%S')
     res = requests.get(video_url)
     title = re.findall(r"<title>(.+?)</title>", res.text)[0]
     return str(title).encode(res.encoding + "").decode("utf-8")
